@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cn.itcast.shop.order.vo.OrderItem" table="orderItem">
+		<id name="itemid">
+			<generator class="uuid" />
+		</id>
+		<property name="count"></property>
+		<property name="subtotal"></property>
+
+		<!-- 关联关系：与订单的关系 -->
+		<many-to-one name="order" class="cn.itcast.shop.order.vo.Order"
+			column="oid" />
+		<!-- 与商品的关联关系 -->
+		<many-to-one name="product" lazy="false" class="cn.itcast.shop.product.vo.Product"
+			column="pid" />
+	</class>
+</hibernate-mapping>

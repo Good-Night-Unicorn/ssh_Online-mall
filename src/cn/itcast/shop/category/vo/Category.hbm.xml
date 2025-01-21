@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+  <hibernate-mapping>
+  <class name="cn.itcast.shop.category.vo.Category" table="category">
+  	<id name="cid">
+  		<generator class="uuid"></generator>
+  	</id>
+  	
+  	<property name="cname"></property>
+  	
+  	<!-- 配置二级分类的一个集合   双向关联-->
+  	<set order-by="csid" cascade="delete" name="categorySeconds" lazy="false">
+  		<key column="cid"/>
+  		<one-to-many class="cn.itcast.shop.categorysecond.vo.CategorySecond"/>
+  	</set>
+  	<!-- hibernate中的list集合会多加一列用于进行排序，这是它的一个特点 -->
+  </class>
+  </hibernate-mapping>
